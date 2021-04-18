@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  important-stuff:
+    runs-on: windows-latest
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12.14.1
+  build:
+    needs: important-stuff
+    runs-on: windows-latest
+    steps:
+      - name: Build
+        run: |
+          npm i -g yarn@1.7.0
+          yarn -v
+          yarn
+          yarn theia build
