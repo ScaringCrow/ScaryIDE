@@ -1,0 +1,14 @@
+image: node:12.14.1
+
+stages:
+  - "build"
+before_script:
+  - node -v
+  - npm -v
+  - npm i -g --force yarn@1.7.0
+  - yarn -v
+build:
+  stage: build
+  script:
+    - yarn
+    - yarn theia build
